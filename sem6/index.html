@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="featured-items"></div>
+    <style>
+      .featured-items {
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .featured-item {
+        width: 360px;
+      }
+
+      .featured-img {
+        width: 100%;
+      }
+
+      .featured-content {
+        padding: 16px 24px;
+      }
+
+      .featured-title {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 16px;
+        margin-bottom: 16px;
+      }
+
+      .featured-desc {
+        color: rgb(93, 93, 93);
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 17px;
+        margin-bottom: 16px;
+      }
+
+      .featured-price {
+        color: rgb(241, 109, 127);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+      }
+    </style>
+    <script src="data.js"></script>
+    <script>
+      const data = JSON.parse(dataInfo);
+      const featuredItems = document.querySelector(".featured-items");
+
+      data.forEach((el) => {
+        const item = document.createElement("div");
+        item.classList.add("featured-item");
+
+        const img = document.createElement("img");
+        img.classList.add("featured-img");
+        img.src = el.img;
+        item.appendChild(img);
+
+        const div = document.createElement("div");
+        div.classList.add("featured-content");
+        item.appendChild(div);
+
+        const h3 = document.createElement("h3");
+        h3.textContent = el.title;
+        h3.classList.add("featured-title");
+        div.appendChild(h3);
+
+        const p = document.createElement("p");
+        p.textContent = el.description;
+        p.classList.add("featured-desc");
+        div.appendChild(p);
+
+        const price = document.createElement("p");
+        price.textContent = el.price;
+        price.classList.add("featured-price");
+        div.appendChild(price);
+
+        featuredItems.appendChild(item);
+      });
+    </script>
+  </body>
+</html>
